@@ -1,9 +1,9 @@
 import fs from "node:fs";
-import { resolve } from "node:path";
 
 const header = "name,email,age\n";
 
 const fileStream = fs.createWriteStream("dummy.csv", { highWaterMark: 4096 });
+
 const writeLine = (line) => {
   return new Promise((resolve, reject) => {
     if (!fileStream.write(line)) {
@@ -25,7 +25,7 @@ const writeLines = (lines) => {
 };
 
 await writeLine(header);
-const linesToGenerate = 10_000_000;
+const linesToGenerate = 10_000;
 
 let linesToWrite = [];
 const maxLinesPerWrite = 100;
